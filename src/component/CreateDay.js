@@ -1,7 +1,9 @@
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 export default function CreateDay(){    
+    const { t } = useTranslation(["createday"]);
     const days = useFetch("http://localhost:3001/days");
     const navigate = useNavigate();
 
@@ -24,8 +26,8 @@ export default function CreateDay(){
 
     return(
         <>
-           <h3>현재 일수 : {days.length}일</h3>
-            <button onClick={addDay}>Day 추가</button>
+           <h3>현재 일수 : {days.length}{t("day")}</h3>
+            <button onClick={addDay}>{t("addday")}</button>
         </>
       
     );     

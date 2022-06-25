@@ -1,8 +1,11 @@
 import { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import useFetch from "../hooks/useFetch";
+import { useTranslation } from "react-i18next";
+import { type } from "@testing-library/user-event/dist/type";
 
 export default function CreateWord(){
+    const { t } = useTranslation(["createword"]);
     const days = useFetch("http://localhost:3001/days");
     const navigate = useNavigate();
     const [isLoading, SetIsLoading] = useState(false);
@@ -41,15 +44,15 @@ export default function CreateWord(){
     return(
         <form onSubmit={onSubmit}>
             <div className ="input_area">
-                <label>End</label>
+                <label>{t("eng")}</label>
                 <input type ="text" placeholder="computer" ref={engRef}></input>
             </div>
             <div className ="input_area">
-                <label>Kor</label>
+                <label>{t("kor")}</label>
                 <input type ="text" placeholder="컴퓨터" ref={korRef}></input>
             </div>
             <div className ="input_area">
-                <label>Day</label>
+                <label>{t("date")}</label>
                 <select ref={dayRef}>
                     {days.map(day =>(
                          <option key ={day.id} value ={day.day}>
@@ -64,7 +67,7 @@ export default function CreateWord(){
                 opacity: isLoading ? 0.3 :1,
             }}
             >
-                {isLoading ? "Saving..." : "저장"}</button>
+                {isLoading ? `${t("saving")}` : `${t("save")}`}</button>
         </form>
     );     
 }

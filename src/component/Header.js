@@ -7,6 +7,7 @@ export default function Header() {
     const { i18n, t } = useTranslation(["common"]);
 
 	useEffect(() => {
+        console.log(localStorage.getItem("i18nextLng")?.length)
 		if (localStorage.getItem("i18nextLng")?.length > 2) {
 			i18next.changeLanguage("ko");
 		}
